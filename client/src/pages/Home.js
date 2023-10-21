@@ -21,15 +21,15 @@ const Home = () => {
 
 
     const handleDelete = async (id) => {
-        // if (confirm('Bạn có chắc muốn xóa ?')) {
-        //     await axios({
-        //         method: "DELETE",
-        //         url: `http://localhost:3001/book/${id}`,
-        //     });
-        // }
-        // let result = await axios('http://localhost:3001/book');
-        // setListBooks(result.data);
-        // setMsg('Đã xóa thành công!');
+        if (window.confirm('Bạn có chắc muốn xóa ?')) {
+            await axios({
+                method: "DELETE",
+                url: `http://localhost:3001/user/delete/${id}`,
+            });
+        }
+        let result = await axios('http://localhost:3001/user');
+        setListUsers(result.data);
+        setMsg('Đã xóa thành công!');
     }
 
     return (
@@ -39,12 +39,17 @@ const Home = () => {
                 <div className="login-main login-agileits">
 
                     <h1>Danh sách người dùng</h1>
-                    <button><a href="dangky.html">Đăng ký</a></button>
+                    <button><Link to='/register'>Đăng ký</Link></button>
+                    <p style={{
+                        color: 'green',
+                        fontStyle: 'italic'
+                    }}>{msg}</p>
                     <table className="index-user" border="1" width="500px" align="center">
                         <thead>
                             <tr>
                                 <th>Id</th>
                                 <th>Email</th>
+                                <th>Avatar</th>
                                 <th>Fullname</th>
                                 <th>Chức năng</th>
                             </tr>
@@ -55,6 +60,8 @@ const Home = () => {
                                 <tr key={idx}>
                                     <td>{user.id}</td>
                                     <td>{user.email}</td>
+                                    <td><img src={user.avatar ? "../avatar/" + user.avatar : '../avatar/No-Image.png'}
+                                        alt="Không có hình ảnh" width="100px" height="100px" /></td>
                                     <td>{user.fullname}</td>
                                     <td>
                                         <button><Link to={'/update/' + user.id}>Sửa</Link></button>
