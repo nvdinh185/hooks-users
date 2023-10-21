@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const Update = () => {
 
@@ -63,20 +63,23 @@ const Update = () => {
                                 <tr align="center">
                                     <td>Email</td>
                                     <td colSpan="2">
-                                        <input type="text" name="email" value={email} onChange={(e) => { setEmail(e.target.value) }} />
+                                        <input type="text" name="email" value={email}
+                                            onChange={(e) => { setEmail(e.target.value) }} />
                                     </td>
                                 </tr>
 
                                 <tr align="center">
                                     <td>Fullname</td>
                                     <td colSpan="2">
-                                        <input type="text" name="fullname" value={fullname} onChange={(e) => { setFullname(e.target.value) }} />
+                                        <input type="text" name="fullname" value={fullname}
+                                            onChange={(e) => { setFullname(e.target.value) }} />
                                     </td>
                                 </tr>
 
                                 <tr align="center">
                                     <td>Avatar</td>
-                                    <td><img id="avatar" src={"../avatar/" + avatar} alt="Không có hình ảnh" width="100px" height="100px" /></td>
+                                    <td><img id="avatar" src={"../avatar/" + avatar}
+                                        alt="Không có hình ảnh" width="100px" height="100px" /></td>
                                     <td>
                                         <input type="file" />
                                     </td>

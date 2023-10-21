@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
 
@@ -27,13 +27,6 @@ const Register = () => {
         if (!fullname) {
             setErrorFullname('Vui lòng nhập họ tên!');
             check = false;
-        }
-
-        function generateUuid() {
-            return 'xxxx-xxxx-xxx-xxxx'.replace(/[x]/g, function (c) {
-                let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-                return v.toString(16);
-            });
         }
 
         if (check) {
@@ -90,10 +83,10 @@ const Register = () => {
     }
 
     return (
-        <div class="login agile">
-            <div class="w3agile-border">
+        <div className="login agile">
+            <div className="w3agile-border">
                 <h2>Register Form | VinaEnter Edu</h2>
-                <div class="login-main login-agileits">
+                <div className="login-main login-agileits">
                     <p style={{ display: 'none' }} id="error"></p>
                     <h1>Register</h1>
                     <form onSubmit={(e) => handleSubmit(e)}>
