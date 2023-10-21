@@ -1,5 +1,5 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
+# Dependency directories
 node_modules/
+
+# npm config file
 package-lock.json
