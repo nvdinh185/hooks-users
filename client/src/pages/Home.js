@@ -6,12 +6,17 @@ const Home = () => {
 
     const [listUsers, setListUsers] = useState([]);
     const [msg, setMsg] = useState('');
+    const [error, setError] = useState('');
     const { state } = useLocation();
 
     useEffect(() => {
         async function fetchData() {
-            let result = await axios('http://localhost:3001/user');
-            setListUsers(result.data);
+            try {
+                let result = await axios('http://localhost:3001/user');
+                setListUsers(result.data);
+            } catch (error) {
+                setError('Xảy ra lỗi khi lấy dữ liệu!');
+            }
         }
         fetchData();
         if (state) {
@@ -22,14 +27,19 @@ const Home = () => {
 
     const handleDelete = async (id) => {
         if (window.confirm('Bạn có chắc muốn xóa ?')) {
-            await axios({
-                method: "DELETE",
-                url: `http://localhost:3001/user/delete/${id}`,
-            });
+            try {
+                await axios({
+                    method: "DELETE",
+                    url: `http://localhost:3001/user/delete/${id}`,
+                });
+
+                let result = await axios('http://localhost:3001/user');
+                setListUsers(result.data);
+                setMsg('Đã xóa thành công!');
+            } catch (error) {
+                setError('Xảy ra lỗi khi xóa!');
+            }
         }
-        let result = await axios('http://localhost:3001/user');
-        setListUsers(result.data);
-        setMsg('Đã xóa thành công!');
     }
 
     return (
@@ -42,8 +52,14 @@ const Home = () => {
                     <button><Link to='/register'>Đăng ký</Link></button>
                     <p style={{
                         color: 'green',
+                        backgroundColor: 'yellow',
                         fontStyle: 'italic'
                     }}>{msg}</p>
+                    <p style={{
+                        color: 'red',
+                        backgroundColor: 'yellow',
+                        fontStyle: 'italic'
+                    }}>{error}</p>
                     <table className="index-user" border="1" width="500px" align="center">
                         <thead>
                             <tr>

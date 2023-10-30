@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
 
@@ -10,6 +10,7 @@ const Register = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [fullname, setFullname] = useState('');
+    const [error, setError] = useState('');
 
     const navigate = useNavigate();
 
@@ -51,7 +52,7 @@ const Register = () => {
                 // console.log('results: ', results);
                 navigate('/', { state: { msg: 'Đã thêm thành công!' } });
             } catch (error) {
-
+                setError('Xảy ra lỗi khi thêm!');
             }
         }
     }
@@ -87,6 +88,11 @@ const Register = () => {
             <div className="w3agile-border">
                 <h2>Register Form | VinaEnter Edu</h2>
                 <div className="login-main login-agileits">
+                    <p style={{
+                        color: 'red',
+                        backgroundColor: 'yellow',
+                        fontStyle: 'italic'
+                    }}>{error}</p>
                     <p style={{ display: 'none' }} id="error"></p>
                     <h1>Register</h1>
                     <form onSubmit={(e) => handleSubmit(e)}>
@@ -127,6 +133,7 @@ const Register = () => {
 
                         <input type="submit" value="Register" />
                     </form>
+                    <button><Link to='/'>Home</Link></button>
                 </div>
             </div>
         </div>

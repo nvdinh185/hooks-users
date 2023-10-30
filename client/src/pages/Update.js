@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 const Update = () => {
 
@@ -8,15 +8,20 @@ const Update = () => {
     const [email, setEmail] = useState('');
     const [fullname, setFullname] = useState('');
     const [avatar, setAvatar] = useState('');
+    const [error, setError] = useState('');
 
     const navigate = useNavigate();
 
     useEffect(() => {
         async function fetchData() {
-            var result = await axios(`http://localhost:3001/user/${id}`);
-            setEmail(result.data.email);
-            setFullname(result.data.fullname);
-            setAvatar(result.data.avatar);
+            try {
+                var result = await axios(`http://localhost:3001/user/${id}`);
+                setEmail(result.data.email);
+                setFullname(result.data.fullname);
+                setAvatar(result.data.avatar);
+            } catch (error) {
+                setError('Xảy ra lỗi khi lấy dữ liệu để sửa!');
+            }
         }
         fetchData();
     }, [id]);
@@ -45,7 +50,7 @@ const Update = () => {
             // console.log('results: ', results);
             navigate('/', { state: { msg: 'Đã sửa thành công!' } });
         } catch (error) {
-
+            setError('Xảy ra lỗi khi sửa!');
         }
     }
 
@@ -54,8 +59,11 @@ const Update = () => {
             <div className="w3agile-border">
                 <h2>TRANG QUẢN TRỊ VIÊN | CẬP NHẬT THÔNG TIN NGƯỜI DÙNG</h2>
                 <div className="login-main login-agileits">
-                    <p style={{ display: 'none' }} id="error"></p>
-
+                    <p style={{
+                        color: 'red',
+                        backgroundColor: 'yellow',
+                        fontStyle: 'italic'
+                    }}>{error}</p>
                     <form onSubmit={(e) => handleSubmit(e)}>
                         <input type="hidden" name="id" value={id} />
                         <table className="update-user" border="1" width="500px" align="center">
@@ -92,6 +100,7 @@ const Update = () => {
                             </tbody>
                         </table>
                     </form>
+                    <button><Link to='/'>Home</Link></button>
                 </div>
             </div>
         </div>
