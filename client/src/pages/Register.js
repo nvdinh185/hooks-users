@@ -117,7 +117,7 @@ const Register = () => {
                             }}>{errorPassword}</span>
                         </div>
                         <div>
-                            <label>Fullname</label>
+                            <label>Fullname (*)</label>
                             <input onBlur={e => handleBlur(e)} onInput={e => handleInput(e)} type="text"
                                 name="fullname" className={errorFullname && 'invalid'} value={fullname}
                                 onChange={(e) => { setFullname(e.target.value) }} />
