@@ -199,7 +199,7 @@ img {
 body {
     padding: 0;
     margin: 0;
-    background: url(./images/bg.jpg)no-repeat;
+    background: url(../images/bg.jpg)no-repeat;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -375,7 +375,7 @@ h5.w3ls-title {
 }
 
 .social-btns a.fa {
-    background: url(./images/bg.jpg)no-repeat 61px center #354c80;
+    background: url(../images/face.png)no-repeat 61px center #354c80;
 }
 
 .social-btns a.fa:hover {
@@ -383,7 +383,7 @@ h5.w3ls-title {
 }
 
 .social-btns a.g {
-    background: url(./images/bg.jpg)no-repeat 67px center #b53f31;
+    background: url(../images/google.png)no-repeat 67px center #b53f31;
 }
 
 .social-btns a.g:hover {
