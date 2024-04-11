@@ -33,8 +33,8 @@ const Home = () => {
                     url: `http://localhost:3001/user/delete/${id}`,
                 });
 
-                let result = await axios('http://localhost:3001/user');
-                setListUsers(result.data);
+                let newList = listUsers.filter(user => user.id !== id);
+                setListUsers(newList);
                 setMsg('Đã xóa thành công!');
             } catch (error) {
                 setError('Xảy ra lỗi khi xóa!');
